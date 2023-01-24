@@ -59,7 +59,22 @@ git pull
 
 
 
+## 4.git commit大于100MB文件报错
 
+当我们在使用git commit提交文件的时候如果大于100MB会报错，因为git hub一个接收文件的大小最大时100MB。
 
+解决方案：
 
+网上的解决方案：https://www.yisu.com/zixun/620433.html
 
+亲测有效的：使用git reset进行版本回滚
+
+```python
+#查询提交日志，获取提交head
+git log
+
+#撤销commit到指定的版本，本地修改的文件不会变动
+git reset --soft 92e076f29644031bf8430d63bbf1f9f85b625d5c
+```
+
+然后再正常使用git操作即可。
