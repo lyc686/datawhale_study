@@ -78,3 +78,17 @@ git reset --soft 92e076f29644031bf8430d63bbf1f9f85b625d5c
 ```
 
 然后再正常使用git操作即可。
+
+## 5.报错  Fa iled to connect to github.com port 443: Timed out或者errno 10054
+
+原因：一般是这是因为服务器的SSL证书没有经过第三方机构的签署，所以才报错
+
+解决方案：解除ssl验证后，再次git即可
+
+```bash
+git config --global http.sslVerify false
+```
+
+如图：
+
+<img src="../images/image-20230203005230455.png" alt="image-20230203005230455" style="zoom:70%;margin-left:0px;" />
