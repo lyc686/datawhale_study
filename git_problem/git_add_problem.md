@@ -92,3 +92,53 @@ git config --global http.sslVerify false
 如图：
 
 <img src="../images/image-20230203005230455.png" alt="image-20230203005230455" style="zoom:70%;margin-left:0px;" />
+
+## 6.上传大文件
+
+1. .首先下载git-lfs 需要配置lfs密钥(注意不是ssh的密钥)的请看https://github.com/git-lfs/git-lfs
+
+   ```bash
+   git lfs install
+
+2. 安装好后进入本地仓库目录，执行下面的命令
+
+```bash
+	git lfs track "filename"
+```
+
+
+
+3.  `filename`是需要上传的大文件。执行完命令后会发现目录下生成了一个".gitattributes"文件，文件内记录了我们要上传文件的信息。只有先把".gitattributes"传上去，才可以上传大文件。
+
+   ```bash
+   git add .gitattributes
+   git commit -m "submit file"
+   git push
+
+4. 上传完毕后，开始上传大文件。
+
+   ```bash
+   git add filename
+   git commit -m "add file"
+   git push 
+
+5. 出现下面的进度条，就说明文件正在上传中
+
+   Uploading LFS objects:   0% (0/1), 2.1 GB | 720 KB/s
+   <font color="blue">需要注意的是:</font>
+
+  通过git-lfs上传文件是**有空间限制的**，免费用户如果上传的文件超过了1G，账号就会被冻结，所以大家在上传前一定要检查一下自己还剩多少空间。
+
+  点击自己的头像，进入"Settings"，选择Billing"就可以看到自己还剩多少空间。
+
+<img src="../images/image-20230204230611369.png" alt="image-20230204230611369" style="zoom:70%;margin-left:0px;" />
+
+如果发现自己空间不足，可以删去一些大文件或者购买更多的空间。
+
+如果在上传过程中出现如下报错：
+
+batch response: Git LFS is disabled for this repository.
+Uploading LFS objects:   0% (0/1), 0 B | 0 B/s, done
+就说明你的账号被冻结了，需要在GitHub后台提交解封申请。
+
+工作日一般几个小时就会帮你把账号解封，解封后才可以继续上传大文件
